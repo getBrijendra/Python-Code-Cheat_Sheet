@@ -609,6 +609,68 @@ d.rotate(-1)
 
 ---
 
+## 14.1 heapq
+Here’s a **small Python `heapq` cheat sheet** showing push, pop, min/max heap, and reverse order:
+
+```python
+import heapq
+
+# Min Heap (smallest comes first)
+heap = []
+
+heapq.heappush(heap, 5)
+heapq.heappush(heap, 2)
+heapq.heappush(heap, 8)
+heapq.heappush(heap, 1)
+
+print(heap)              # [1, 2, 8, 5]
+
+print(heapq.heappop(heap))  # 1
+print(heapq.heappop(heap))  # 2
+
+print(heap)              # [5, 8]
+
+
+# Build heap from list
+nums = [5, 2, 8, 1]
+heapq.heapify(nums)
+
+print(nums)              # [1, 2, 8, 5]
+
+
+# Peek smallest (without removing)
+print(nums[0])           # 1
+
+
+# Max Heap — use negative values
+max_heap = []
+
+heapq.heappush(max_heap, -5)
+heapq.heappush(max_heap, -2)
+heapq.heappush(max_heap, -8)
+heapq.heappush(max_heap, -1)
+
+print(-heapq.heappop(max_heap))  # 8
+print(-heapq.heappop(max_heap))  # 5
+print(-heapq.heappop(max_heap))  # 2
+print(-heapq.heappop(max_heap))  # 1
+```
+
+### Remember
+
+| Operation           | Code                   |
+| ------------------- | ---------------------- |
+| Push                | `heapq.heappush(h, x)` |
+| Pop smallest        | `heapq.heappop(h)`     |
+| Peek smallest       | `h[0]`                 |
+| Convert list → heap | `heapq.heapify(h)`     |
+| Max heap push       | `heappush(h, -x)`      |
+| Max heap pop        | `-heappop(h)`          |
+
+**Reverse order / largest first:** Python `heapq` is naturally a **min-heap**, so use **negative numbers** for a max-heap.
+
+---
+
 ## 15. `for` + `range`
 
 ```python
