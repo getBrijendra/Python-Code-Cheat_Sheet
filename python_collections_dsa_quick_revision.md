@@ -656,6 +656,84 @@ print(-heapq.heappop(max_heap))  # 2
 print(-heapq.heappop(max_heap))  # 1
 ```
 
+With `heapq`, **tuples are compared element-by-element**, so normally it sorts by the **first value**.
+
+If you want to sort by another variable, put that variable **first in the tuple**.
+
+```python
+import heapq
+
+heap = []
+
+heapq.heappush(heap, (10, "A", 50))
+heapq.heappush(heap, (5, "B", 20))
+heapq.heappush(heap, (8, "C", 30))
+
+print(heapq.heappop(heap))
+# (5, 'B', 20)
+```
+
+Here it sorts by `10, 5, 8` because that's the first element.
+
+### Want to sort by the 3rd variable?
+
+Put it first:
+
+```python
+heap = []
+
+heapq.heappush(heap, (50, "A", 10))
+heapq.heappush(heap, (20, "B", 5))
+heapq.heappush(heap, (30, "C", 8))
+
+print(heapq.heappop(heap))
+# (20, 'B', 5)
+```
+
+Conceptually:
+
+```text
+(priority, other_data...)
+```
+
+### Common pattern
+
+If you have:
+
+```python
+(value, name, cost)
+```
+
+but want to heap by `cost`:
+
+```python
+heapq.heappush(heap, (cost, value, name))
+```
+
+Then:
+
+```python
+cost, value, name = heapq.heappop(heap)
+```
+
+### Important
+
+`heapq` **doesn't have a `key=` parameter** like `sorted()`.
+
+So this **doesn't work**:
+
+```python
+heapq.heappush(heap, item, key=lambda x: x.cost)  # ❌
+```
+
+Instead, use:
+
+```python
+heapq.heappush(heap, (item.cost, item))
+```
+
+This is the standard approach.
+
 ### Remember
 
 | Operation           | Code                   |
