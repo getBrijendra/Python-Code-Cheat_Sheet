@@ -166,7 +166,10 @@ Powers of two have exactly one set bit.
 9\. Count set bits (number of 1s)
 
 ```
-count = 0while n:    n &= n - 1    count += 1
+count = 0
+while n:
+        n &= n - 1
+        count += 1
 ```
 
 Time complexity: \\(O(k)\\), where \\(k\\) is the number of set bits, for nonnegative `n`.
@@ -192,7 +195,11 @@ XOR has three useful properties:
 If every number appears twice except one:
 
 ```
-nums = [4, 1, 2, 1, 2]ans = 0for n in nums:    ans ^= n# ans = 4
+nums = [4, 1, 2, 1, 2]
+ans = 0
+for n in nums:
+    ans ^= n
+# ans = 4
 ```
 
 The duplicate values cancel each other.
@@ -202,7 +209,9 @@ Complexity: \\(O(n)\\) time, \\(O(1)\\) extra space.
 ### Swap two variables without a temporary variable
 
 ```
-a ^= bb ^= aa ^= b
+a ^= b
+b ^= a
+a ^= b
 ```
 
 Python's normal swap is preferable in production:
@@ -216,7 +225,17 @@ a, b = b, a
 This is the bit trick from LeetCode 29.
 
 ```
-# Double a valuetemp <<= 1# Double the quotient contributioncount <<= 1# Subtract the largest possible chunkdividend -= temp# Add its contributionquotient += count
+# Double a value
+temp <<= 1
+
+# Double the quotient contribution
+count <<= 1
+
+# Subtract the largest possible chunk
+dividend -= temp
+
+# Add its contribution
+quotient += count
 ```
 
 The key idea is:
