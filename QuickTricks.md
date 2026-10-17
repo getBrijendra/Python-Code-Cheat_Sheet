@@ -17,7 +17,11 @@ One important Python fact: Python integers have arbitrary precision, so normal i
 For a signed 32-bit integer:
 
 ```
-INT_MIN = -(1 << 31)       # -2147483648INT_MAX = (1 << 31) - 1    #  2147483647# Equivalent boundary constantsMIN_32 = -2**31MAX_32 =  2**31 - 1
+INT_MIN = -(1 << 31)       # -2147483648
+INT_MAX = (1 << 31) - 1    #  2147483647
+# Equivalent boundary constants
+MIN_32 = -2**31
+MAX_32 =  2**31 - 1
 ```
 
 | Integer type  | Minimum       | Maximum        |
@@ -44,13 +48,27 @@ if dividend == INT_MIN and divisor == -1:    return INT_MAX
 C. Check before adding
 
 ```
-# Check whether a + b would exceed INT_MAXif b > 0 and a > INT_MAX - b:    # Positive overflow    pass# Check whether a + b would fall below INT_MINif b < 0 and a < INT_MIN - b:    # Negative overflow    pass
+# Check whether a + b would exceed INT_MAX
+if b > 0 and a > INT_MAX - b:
+        # Positive overflow
+        pass
+
+# Check whether a + b would fall below INT_MIN
+if b < 0 and a < INT_MIN - b:
+        # Negative overflow
+        pass
 ```
 
 D. Simulate signed 32-bit wraparound
 
 ```
-MASK = (1 << 32) - 1# Keep only the lowest 32 bitsx &= MASK# Interpret as signed 32-bitif x >= (1 << 31):    x -= (1 << 32)
+MASK = (1 << 32) - 1
+# Keep only the lowest 32 bits
+x &= MASK
+
+# Interpret as signed 32-bit
+if x >= (1 << 31):
+        x -= (1 << 32)
 ```
 
 Wraparound is not the same as saturation. Use the behavior required by the problem.
@@ -69,7 +87,9 @@ Wraparound is not the same as saturation. Use the behavior required by the probl
 For nonnegative integers, left shifting by \\(k\\) positions is equivalent to multiplying by \\(2^k\\), and right shifting is equivalent to floor-dividing by \\(2^k\\).
 
 ```
-x << k      # Shift left k bitsx >> k      # Shift right k bits1 << k      # Create a number with bit k set
+x << k      # Shift left k bits
+x >> k      # Shift right k bits
+1 << k      # Create a number with bit k set
 ```
 
 For example, `1 << 4` is `16`, or binary `10000`.
@@ -79,7 +99,12 @@ For example, `1 << 4` is `16`, or binary `10000`.
 1\. Check whether a number is even or odd
 
 ```
-if n & 1:    # Odd    passelse:    # Even    pass
+if n & 1:
+        # Odd
+        pass
+else:
+        # Even
+        pass
 ```
 
 Why: the least significant bit is `1` for odd numbers.
@@ -87,7 +112,9 @@ Why: the least significant bit is `1` for odd numbers.
 2\. Check whether the k-th bit is set
 
 ```
-if n & (1 << k):    # Bit k is set    pass
+if n & (1 << k):
+        # Bit k is set
+        pass
 ```
 
 Bit positions start at `0`, from the right.
