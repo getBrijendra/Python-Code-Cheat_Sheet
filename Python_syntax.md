@@ -130,3 +130,35 @@ class Solution:
 ```
 
 Or use a local variable passed through recursion, depending on the problem.
+
+
+# Dict sorting
+In Python, you can sort a dictionary by its values in descending order to get the keys with the highest values first.
+
+```python
+d = {'a': 10, 'b': 30, 'c': 20, 'd': 50}
+
+sorted_dict = dict(sorted(d.items(), key=lambda x: x[1], reverse=True))
+
+print(sorted_dict)
+```
+
+Output:
+
+```python
+{'d': 50, 'b': 30, 'c': 20, 'a': 10}
+```
+
+### If you only want the key with the highest value
+
+```python
+key = max(d, key=d.get)
+print(key)  # d
+```
+
+### If you want all keys from highest to lowest
+
+```python
+keys = sorted(d, key=d.get, reverse=True)
+print(keys)  # ['d', 'b', 'c', 'a']
+```
