@@ -198,7 +198,24 @@ print(isinstance(my_dog, Animal))  # True (Inheritance is checked)
 
 ### isinstance() vs type()
 
-Feature	|   isinstance(obj, Class)	|  type(obj) == Class
-Inheritance	 |   Considers subclasses (returns True for parents) |	Checks the exact class only
-Multiple Types	| Supports checking a tuple of types at once	| Requires individual or statements
-Best Practice |	Recommended for most runtime type checking |	Reserved for strict, exact match requirements
+Feature	 -->   isinstance(obj, Class)  -->  type(obj) == Class
+
+Inheritance	 -->    Considers subclasses (returns True for parents)  -->	Checks the exact class only
+
+Multiple Types	-->  Supports checking a tuple of types at once --> Requires individual or statements
+
+Best Practice -->	Recommended for most runtime type checking  -->	Reserved for strict, exact match requirements
+
+
+```python
+from collections.abc import Iterable, Sequence
+
+# Check if you can loop over it (strings, lists, dicts, etc.)
+print(isinstance("hello", Iterable))     # True
+print(isinstance([1, 2, 3], Iterable))   # True
+
+# Check if it has an order and length (lists, tuples, NOT sets or dicts)
+print(isinstance({1, 2, 3}, Sequence))   # False (Sets have no order/index)
+print(isinstance((1, 2), Sequence))      # True
+```
+
