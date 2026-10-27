@@ -162,3 +162,43 @@ print(key)  # d
 keys = sorted(d, key=d.get, reverse=True)
 print(keys)  # ['d', 'b', 'c', 'a']
 ```
+
+
+# isinstance checking in python
+
+```python
+name = "Alice"
+age = 30
+
+print(isinstance(name, str))  # True
+print(isinstance(age, int))   # True
+print(isinstance(age, str))   # False
+
+value = 3.14
+
+# Using a tuple
+print(isinstance(value, (int, float, str)))  # True
+
+# Using a union operator (Python 3.10+)
+print(isinstance(value, int | float))        # True
+
+class Animal:
+    pass
+
+class Dog(Animal):
+    pass
+
+my_dog = Dog()
+
+print(isinstance(my_dog, Dog))     # True
+print(isinstance(my_dog, Animal))  # True (Inheritance is checked)
+
+```
+
+
+### isinstance() vs type()
+
+Feature	|   isinstance(obj, Class)	|  type(obj) == Class
+Inheritance	 |   Considers subclasses (returns True for parents) |	Checks the exact class only
+Multiple Types	| Supports checking a tuple of types at once	| Requires individual or statements
+Best Practice |	Recommended for most runtime type checking |	Reserved for strict, exact match requirements
