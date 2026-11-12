@@ -1,0 +1,25 @@
+
+V8’s baseline JavaScript compiler is called Sparkplug. ⚡
+
+Simplified V8 pipeline:
+JavaScript Code
+      ↓
+Parser
+      ↓
+Ignition (Interpreter)
+      ↓
+Sparkplug (Baseline Compiler)
+      ↓
+Maglev (Optimizing Compiler)
+      ↓
+TurboFan (Advanced Optimizing Compiler)
+
+In short:
+- Ignition → interprets JavaScript bytecode
+- Sparkplug → fast baseline compilation
+- Maglev → faster optimized compilation
+- TurboFan → highly optimized machine code
+
+
+
+
