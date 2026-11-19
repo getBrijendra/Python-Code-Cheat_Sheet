@@ -38,10 +38,11 @@ print(Student.add(10, 20)) # 30
 | **Common use**                | Factory methods, class configuration | Utility/helper functions     |
 | **Called using**              | Class or object                      | Class or object              |
 
+---- 
 
 '''
 class Employee:
-    company = "Google"
+    company = 'Google'
 
     def normal_method(self):
         print("Instance:", self.company)
@@ -55,7 +56,6 @@ class Employee:
         print("Static: Hello")
 
 emp = Employee()
-
 emp.normal_method()
 Employee.class_method()
 Employee.static_method()
